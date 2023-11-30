@@ -7,12 +7,13 @@
  * root directory.
  */
 
- /**
-  * \file  main.cpp
-  * \brief definition of application entry point
-  */
+/**
+ * \file  main.cpp
+ * \brief definition of application entry point
+ */
 
 
+/* app includes */
 #include <application.hpp>
 
 

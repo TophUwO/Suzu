@@ -13,6 +13,8 @@
  */
 
 
+#pragma once
+
 /* external includes */
 #include <QApplication>
 
@@ -52,6 +54,7 @@ namespace suzu {
          * 
          * \note   *false* is only returned in case of a fatal error
          *         that would require the application to exit.
+         * \note   This function never throws any exceptions.
          */
         bool initialize() noexcept;
         /**

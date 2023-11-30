@@ -23,6 +23,9 @@
   <ItemGroup>
     <QtMoc Include="src\include\application.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="sdk\log.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46F59A32-A171-4912-A49C-E145BEF86409}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
@@ -68,10 +71,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IncludePath>$(SolutionDir)sdk;$(SolutionDir)src\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)sdk\external;$(SolutionDir);$(SolutionDir)src\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <IncludePath>$(SolutionDir)sdk;$(SolutionDir)src\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)sdk\external;$(SolutionDir);$(SolutionDir)src\include;$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
