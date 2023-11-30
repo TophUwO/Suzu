@@ -22,6 +22,11 @@
 
 namespace suzu {
     /**
+     * \namespace suzu::internal
+     * \brief     internal functions used by Suzu
+     * 
+     * This namespace is not to be used by plug-ins. Plug-ins use the namespace natsu::sdk::internal for
+     * internal functions.
      */
     namespace internal {
         /**
@@ -30,8 +35,11 @@ namespace suzu {
          * This function is called before components are initialized. Loggers will be destroyed
          * after the application instance has been destroyed. Logging is therefore safe throughout
          * the entire lifetime of the application.
+         * 
+         * \param  [in] logfile pointer to a C-string which holds the path of the main logfile
          *
-         * \return C-array of constructed sinks
+         * \return 2-tuple of a statically-allocated array holding sink pointers and the number of
+         *         initialized sinks
          * \note   The return value of this function should be passed to plug-ins as well upon invoking
          *         the plugin's initialization function.
          */
@@ -61,7 +69,9 @@ namespace suzu {
         SZSDK_APP_INFO("Successfully initialized application instance.");
     }
 
-    Application::~Application() { }
+    Application::~Application() {
+        SZSDK_APP_INFO("Shutdown application instance.");
+    }
 
 
     bool Application::initialize() noexcept {
