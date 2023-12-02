@@ -87,9 +87,6 @@ namespace suzu {
             return;
         }
 
-        /* Initialize main components. */
-        m_wnd = new suzu::Window(m_cfg);
-
         SZSDK_APP_INFO("Successfully initialized application instance.");
     }
 
@@ -99,6 +96,10 @@ namespace suzu {
 
 
     bool Application::initialize() noexcept {
+        try {
+            m_wnd = new Window(m_cfg);
+        } catch (...) { return false; }
+
         return true;
     }
 
