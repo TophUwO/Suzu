@@ -38,13 +38,13 @@ namespace suzu {
         suzu::sdk::Configuration &m_gcfg; /**< reference to the global configuration */
 
     public:
-        explicit Window() noexcept = delete;
+        explicit Window() = delete;
         /**
          * \brief constructs the main window
          * 
          * \param [in] gcfg reference to the global configuration object
          */
-        explicit Window(suzu::sdk::Configuration &gcfg) noexcept;
+        explicit Window(suzu::sdk::Configuration &gcfg);
         ~Window();
 
     public slots:

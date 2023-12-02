@@ -115,6 +115,7 @@ namespace suzu {
         try {
             return QApplication::notify(obj, ev);
         } catch (std::exception const &e) {
+            /* Format error message. */
             auto const msg = Application::int_fmtMessage(obj, ev, e.what());
 
             /*

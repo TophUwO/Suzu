@@ -24,7 +24,7 @@
 
 
 namespace suzu {
-    Window::Window(suzu::sdk::Configuration &gcfg) noexcept
+    Window::Window(suzu::sdk::Configuration &gcfg)
         : QMainWindow(), m_gcfg(gcfg)
     {
         /* Initialize UI. */
