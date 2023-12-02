@@ -19,6 +19,7 @@
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="src\include\application.hpp" />
@@ -28,9 +29,13 @@
     <ClInclude Include="sdk\error.hpp" />
     <ClInclude Include="sdk\log.hpp" />
     <ClInclude Include="sdk\util.hpp" />
+    <QtMoc Include="src\include\window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="data\config.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="src\forms\window.ui" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46F59A32-A171-4912-A49C-E145BEF86409}</ProjectGuid>

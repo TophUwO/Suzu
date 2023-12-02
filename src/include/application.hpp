@@ -21,6 +21,9 @@
 /* sdk includes */
 #include <sdk/config.hpp>
 
+/* app includes */
+#include <window.hpp>
+
 
 /**
  * \namespace suzu
@@ -40,7 +43,8 @@ namespace suzu {
     class Application final : public QApplication {
         Q_OBJECT
 
-        sdk::Configuration m_cfg; /**< global configuration */
+        sdk::Configuration  m_cfg; /**< global configuration */
+        Window             *m_wnd; /**< main window */
 
     public:
         explicit Application() noexcept = delete;
