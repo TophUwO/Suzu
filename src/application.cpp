@@ -13,9 +13,6 @@
  */
 
 
-/* external includes */
-#include <QMessageBox>
-
 /* sdk includes */
 #include <sdk/log.hpp>
 
