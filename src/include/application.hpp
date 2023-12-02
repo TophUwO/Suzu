@@ -46,8 +46,20 @@ namespace suzu {
         sdk::Configuration  m_cfg; /**< global configuration */
         Window             *m_wnd; /**< main window */
 
+        /**
+         * \brief  formats a generic error message to use in the global exception handler
+         * 
+         * \param  [in] obj receiving object
+         * \param  [in] ev event
+         * \param  [in] exc exception description
+         * 
+         * \return formatted string
+         * \note   This function never throws any exceptions.
+         */
+        static std::string int_fmtMessage(QObject *obj, QEvent *ev, char const *exc) noexcept;
+
     public:
-        explicit Application() noexcept = delete;
+        explicit Application() = delete;
         /**
          * \brief constructs a new application instance
          * 
@@ -68,13 +80,25 @@ namespace suzu {
          *         that would require the application to exit.
          * \note   This function never throws any exceptions.
          */
-        bool initialize() noexcept;
+        bool initialize();
         /**
          * \brief  starts the main-loop and runs the application
          * 
          * \return error code to be returned to host OS
          */
         int run();
+
+
+        /**
+         * \brief  overrides the default 'notify()' method in order to
+         *         enable global exception handling
+         * 
+         * \param  [in] obj receiving object
+         * \param  [in] ev event
+         *
+         * \return return value of event handler of *obj*
+         */
+        virtual bool notify(QObject *obj, QEvent *ev) override;
     };
 }
 

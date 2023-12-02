@@ -13,6 +13,9 @@
  */
 
 
+/* external includes */
+#include <QMessageBox>
+
 /* sdk includes */
 #include <sdk/log.hpp>
 
@@ -69,9 +72,6 @@ namespace suzu {
     Application::Application(int argc, char **argv)
         : QApplication(argc, argv), m_cfg(gl_glcfgpath.data(), true), m_wnd(nullptr)
     {
-        /* Apply modern style. */
-        QApplication::setStyle("fusion");
-
         /* If global config could not be read, exit the application. */
         if (!m_cfg.isOk()) {
             QApplication::exit(sdk::ErrorCode::CriticalResource);
@@ -95,10 +95,8 @@ namespace suzu {
     }
 
 
-    bool Application::initialize() noexcept {
-        try {
-            m_wnd = new Window(m_cfg);
-        } catch (...) { return false; }
+    bool Application::initialize() {
+        m_wnd = new Window(m_cfg);
 
         return true;
     }
@@ -110,6 +108,46 @@ namespace suzu {
 
         /* Start main loop and run application. */
         return QApplication::exec();
+    }
+
+
+    bool Application::notify(QObject *obj, QEvent *ev) {
+        try {
+            return QApplication::notify(obj, ev);
+        } catch (std::exception const &e) {
+            auto const msg = Application::int_fmtMessage(obj, ev, e.what());
+
+            /*
+             * Show a message box to the user and ask them to either ignore the
+             * error or quit the application.
+             */
+            SZSDK_APP_CRITICAL(msg);
+            if (QMessageBox::critical(nullptr, "Fatal Error", msg.c_str(), QMessageBox::Ignore, QMessageBox::Abort) == QMessageBox::Abort) {
+                SZSDK_APP_CRITICAL("Application termination by user choice.");
+
+                QApplication::exit(sdk::ErrorCode::CriticalError);
+            }
+        }
+
+        return true;
+    }
+
+
+    std::string Application::int_fmtMessage(QObject *obj, QEvent *ev, char const *exc) noexcept {
+        try {
+            return fmt::format(
+                "Caught exception while sending event {} (type: '{}') to object '{}' (type: {})."
+                "\nPlease report this error to the author of the application."
+                "\n\nDescription: {}",
+                (int)ev->type(),
+                typeid(*ev).name(),
+                obj->objectName().toStdString(),
+                typeid(*obj).name(),
+                exc
+            );
+        } catch (std::exception const &) { }
+
+        return "";
     }
 }
 
