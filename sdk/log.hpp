@@ -68,7 +68,7 @@ namespace suzu::sdk {
             /* Initialize and register loggers. */
             spdlog::initialize_logger(std::make_shared<spdlog::logger>(gl_applog, ilsinks));
             spdlog::initialize_logger(std::make_shared<spdlog::logger>(gl_pluginlog, ilsinks));
-        } catch (...) { }
+        } catch (...) { return false; }
 
         return true;
     }

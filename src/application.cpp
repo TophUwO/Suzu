@@ -21,10 +21,13 @@
 
 
 namespace suzu {
+    using namespace std::string_literals;
+
+
     /**
      * \namespace suzu::internal
      * \brief     internal functions used by Suzu
-     * 
+     *
      * This namespace is not to be used by plug-ins. Plug-ins use the namespace natsu::sdk::internal for
      * internal functions.
      */
@@ -55,7 +58,8 @@ namespace suzu {
                 };
 
                 return { gl_sinks.data(), gl_sinks.size() };
-            } catch (...) { }
+            }
+            catch (...) {}
 
             return { nullptr, 0 };
         }
@@ -63,9 +67,10 @@ namespace suzu {
 
 
     Application::Application(int argc, char **argv)
-        : QApplication(argc, argv), m_cfg(gl_glcfgpath.data(), true)
+        : QApplication(argc, argv), m_cfg(gl_glcfgpath.data(), true), m_wnd(nullptr)
     {
-        using namespace std::string_literals;
+        /* Apply modern style. */
+        QApplication::setStyle("fusion");
 
         /* If global config could not be read, exit the application. */
         if (!m_cfg.isOk()) {
@@ -76,11 +81,13 @@ namespace suzu {
 
         /* Initialize logging facilities. */
         auto [sinks, len] = internal::RetrieveGlobalLoggerSinks(sdk::JSONCVT::to(m_cfg.getValue("/logfile"), ""s).c_str());
-        if (sinks != nullptr && len != 0) {
-            suzu::sdk::InitializeInstanceLoggers(len, sinks);
+        if ((sinks == nullptr && len == 0) || !suzu::sdk::InitializeInstanceLoggers(len, sinks)) {
+            QApplication::exit(sdk::ErrorCode::CriticalComponent);
 
-            SZSDK_APP_INFO("Successfully initialized application instance.");
+            return;
         }
+
+        SZSDK_APP_INFO("Successfully initialized application instance.");
     }
 
     Application::~Application() {
@@ -89,6 +96,10 @@ namespace suzu {
 
 
     bool Application::initialize() noexcept {
+        try {
+            m_wnd = new Window(m_cfg);
+        } catch (...) { return false; }
+
         return true;
     }
 
