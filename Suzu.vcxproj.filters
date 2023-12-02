@@ -42,5 +42,19 @@
     <ClInclude Include="sdk\log.hpp">
       <Filter>SDK</Filter>
     </ClInclude>
+    <ClInclude Include="sdk\config.hpp">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\util.hpp">
+      <Filter>SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\error.hpp">
+      <Filter>SDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\config.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

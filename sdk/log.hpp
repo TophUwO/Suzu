@@ -41,8 +41,8 @@ namespace suzu::sdk {
      * each instance individually. Loggers can share sinks. Sinks are created by the main application
      * and then passed down to all plug-in instances upon initialization. Each plug-in instance owns
      * their loggers, but not the sinks.
-     * Sinks are passed as a C-array due to ABI differences for standard C++ container classes when
-     * compiling with MSVC. 
+     * Sinks are passed as a C-array due to ABI differences between debug and release builds for standard
+     * C++ container classes when compiling with MSVC. 
      * 
      * \param  [in] nsinks number of sinks to register
      * \param  [in] sinks C-array, holding exactly *nsinks* sink pointers
@@ -84,8 +84,8 @@ namespace suzu::sdk {
  * the used logger is determined based on what macro is used. The logger used for each macro can be read from
  * the macro name, the schema is SZSDK_<logger-name>_<log-level>().
  *
- * \param format format string, allows fmtlib format specifiers
- * \param ...    format arguments
+ * \param    [in] format format string, allows fmtlib format specifiers
+ * \param    [in] ... format arguments
  *
  * \note For fmtlib documentation, visit https://fmt.dev/latest/index.html.
  */

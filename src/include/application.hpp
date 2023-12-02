@@ -18,12 +18,18 @@
 /* external includes */
 #include <QApplication>
 
+/* sdk includes */
+#include <sdk/config.hpp>
+
 
 /**
  * \namespace suzu
  * \brief     root namespace of suzu's code-base
  */
 namespace suzu {
+    constexpr std::string_view gl_glcfgpath = "data/config.json"; /**< path to global config file; relative to root directory */
+
+
     /**
      * \class suzu::Application
      * \brief main application class; singleton
@@ -33,6 +39,8 @@ namespace suzu {
      */
     class Application final : public QApplication {
         Q_OBJECT
+
+        sdk::Configuration m_cfg; /**< global configuration */
 
     public:
         explicit Application() noexcept = delete;

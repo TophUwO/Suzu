@@ -24,7 +24,13 @@
     <QtMoc Include="src\include\application.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="sdk\config.hpp" />
+    <ClInclude Include="sdk\error.hpp" />
     <ClInclude Include="sdk\log.hpp" />
+    <ClInclude Include="sdk\util.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="data\config.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{46F59A32-A171-4912-A49C-E145BEF86409}</ProjectGuid>
