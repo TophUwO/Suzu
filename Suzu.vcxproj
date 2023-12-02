@@ -18,6 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\editor.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
@@ -26,9 +27,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sdk\config.hpp" />
+    <ClInclude Include="sdk\element.hpp" />
     <ClInclude Include="sdk\error.hpp" />
     <ClInclude Include="sdk\log.hpp" />
     <ClInclude Include="sdk\util.hpp" />
+    <QtMoc Include="src\include\editor.hpp" />
     <QtMoc Include="src\include\window.hpp" />
   </ItemGroup>
   <ItemGroup>

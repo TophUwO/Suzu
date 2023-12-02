@@ -23,6 +23,9 @@
 /* sdk includes */
 #include <sdk/config.hpp>
 
+/* app includes */
+#include <editor.hpp>
+
 
 namespace suzu {
     /**
@@ -35,7 +38,8 @@ namespace suzu {
     class Window final : public QMainWindow, private Ui_Window {
         Q_OBJECT
 
-        suzu::sdk::Configuration &m_gcfg; /**< reference to the global configuration */
+        sdk::Configuration &m_gcfg;   /**< reference to the global configuration */
+        DiagramEditor      *m_editor; /**< diagram editor component */
 
     public:
         explicit Window() noexcept = delete;
@@ -44,7 +48,7 @@ namespace suzu {
          * 
          * \param [in] gcfg reference to the global configuration object
          */
-        explicit Window(suzu::sdk::Configuration &gcfg) noexcept;
+        explicit Window(sdk::Configuration &gcfg) noexcept;
         ~Window();
 
     public slots:

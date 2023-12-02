@@ -14,7 +14,7 @@
 
 
 /* external includes */
-#include <QMessageBox>
+#include <QLayout>
 
 /* sdk includes */
 #include <sdk/log.hpp>
@@ -25,10 +25,13 @@
 
 namespace suzu {
     Window::Window(suzu::sdk::Configuration &gcfg) noexcept
-        : QMainWindow(), m_gcfg(gcfg)
+        : QMainWindow(), m_gcfg(gcfg), m_editor(nullptr)
     {
         /* Initialize UI. */
         setupUi(this);
+
+        m_editor = new DiagramEditor(this);
+        setCentralWidget(m_editor);
 
         showNormal();
         SZSDK_APP_INFO("Successfully initialized main window.");
