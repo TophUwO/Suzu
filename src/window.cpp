@@ -40,8 +40,6 @@ namespace suzu {
 
 
     void Window::on_actionExit_triggered() {
-        throw std::exception("This function is currently not implemented.");
-
         QApplication::exit(sdk::ErrorCode::Ok);
     }
 }
