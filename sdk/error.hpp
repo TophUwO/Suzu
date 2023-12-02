@@ -43,6 +43,7 @@ namespace suzu::sdk {
         InvalidState,          /**< invalid object state */
         CriticalResource,      /**< error locating an operation-critical resource */
         CriticalComponent,     /**< error initializing an operation-critical component */
+        CriticalError,         /**< application exit due to fatal error */
         OpenFile,              /**< error while opening file */
         ReadFile,              /**< error while reading file buffer */
         WriteFile,             /**< error while writing file */
