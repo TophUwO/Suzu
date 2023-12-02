@@ -13,13 +13,14 @@
  */
 
 
+/* external includes */
+#include <QMessageBox>
+
 /* sdk includes */
 #include <sdk/log.hpp>
 
 /* app includes */
 #include <application.hpp>
-
-#include <qmessagebox.h>
 
 
 namespace suzu {
